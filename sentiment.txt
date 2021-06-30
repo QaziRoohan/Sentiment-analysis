@@ -1,0 +1,34 @@
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+
+df = pd.read_csv("D:\Download/Tweets.csv")
+df.head()
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(data=df, x="airline_sentiment");
+
+plt.figure(figsize=(12, 4), dpi=150)
+sns.countplot(x=df["negativereason"])
+plt.xticks(rotation=45, horizontalalignment="right");
+
+plt.figure(figsize=(12, 4), dpi=150)
+sns.countplot(data=df, x="airline", hue="airline_sentiment");
+
+
+
+data = df[["airline_sentiment", "text"]]
+data.head()
+
+
+X = df["text"]
+y = df["airline_sentiment"]
+
+
+from sklearn.model_selection import train_test_split
+Xtrain, Xvalid, ytrain, yvalid = train_test_split(X, y, test_size=0.2, random_state=101)
+
+
+
